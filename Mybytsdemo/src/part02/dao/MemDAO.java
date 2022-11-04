@@ -27,7 +27,7 @@ public class MemDAO {
 		try(Reader reader = Resources.getResourceAsReader(resoure)) {
 			SqlSessionFactoryBuilder sqlBuilder = new SqlSessionFactoryBuilder();
 			SqlSessionFactory factory = sqlBuilder.build(reader);
-			session = factory.openSession();
+			session = factory.openSession(true);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
@@ -39,16 +39,19 @@ public class MemDAO {
 	// 삽입
 	public int inserMethod(MemDTO dto) {
 		int chk = -1;
+		session.insert("mem.memInsert",dto);
 		return chk;
 	}
 	//수정
 	public int updatamethod(HashMap<String, Object>hmap) {
 		int chk =-1;	
+		chk = session.update("mem.memUpdate", hmap);
 		return chk;
 	}
 	//삭제
 	public int deletemethod(int age) {
-		int chk =-1;		
+		int chk =-1;
+		chk = session.delete("mem.memDelete", age);
 		return chk;
 	}	
 }
