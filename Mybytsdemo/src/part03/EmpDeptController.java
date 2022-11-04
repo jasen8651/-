@@ -19,5 +19,12 @@ public class EmpDeptController {
 	public List<DeptDTO> deptProcess(){
 		return dao.dept_empMethod();
 	}
+	public List<EmpDTO> partProcess(){
+		return dao.partMrthod();
+	}
+	
+	public List<EmpDTO> emp_dept_locPorcess(){
+		return dao.emp_dept_locMethod();
+	}
 	
 }	

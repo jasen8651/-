@@ -7,6 +7,7 @@ public class DeptDTO {
 	private String department_name;
 	private List<EmpDTO> emplist;
 	
+	
 	public DeptDTO() {
 		
 	}

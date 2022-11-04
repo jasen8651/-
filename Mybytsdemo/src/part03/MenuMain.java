@@ -15,12 +15,24 @@ public class MenuMain {
 					eDto.getJob_id(), eDto.getDept().getDepartment_id(),eDto.getDept().getDepartment_name());
 		}*/
 		
-		List<DeptDTO> aList = eDeptController.deptProcess();
-		for(DeptDTO ddto : aList) {
-			for(EmpDTO edto : ddto.getEmplist()) {
-				System.out.printf("%d %s %d %s %s\n", ddto.getDepartment_id(), ddto.getDepartment_name(),
-						edto.getEmployee_id(), edto.getFirst_name(), edto.getJob_id());	
-			}
+		/*
+		 * List<DeptDTO> aList = eDeptController.deptProcess(); for(DeptDTO ddto :
+		 * aList) { for(EmpDTO edto : ddto.getEmplist()) {
+		 * System.out.printf("%d %s %d %s %s\n", ddto.getDepartment_id(),
+		 * ddto.getDepartment_name(), edto.getEmployee_id(), edto.getFirst_name(),
+		 * edto.getJob_id()); } }
+		 */
+		
+		/*
+		 * List<EmpDTO> aList = eDeptController.partProcess(); for(EmpDTO dto : aList) {
+		 * System.out.printf("%d %s %s %d\n", dto.getEmployee_id(), dto.getFirst_name(),
+		 * dto.getJob_id(), dto.getDepartment_id()); }
+		 */
+		List<EmpDTO> aList = eDeptController.emp_dept_locPorcess();
+		for(EmpDTO edto : aList) {
+			System.out.printf("%d %s %s %s\n", edto.getEmployee_id(), edto.getFirst_name(), 
+					edto.getDept().getDepartment_name(), edto.getLdto().getCity());
 		}
+		
 	}
 }
