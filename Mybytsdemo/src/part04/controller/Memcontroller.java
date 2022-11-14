@@ -15,5 +15,20 @@ public class Memcontroller {
 	public List<MemDTO> selectProcrss(){
 		return dao.allMethod();
 	}
-
+	
+	public int multiInsProcess(List<MemDTO> list) {
+		for(MemDTO dto : list)
+			dto.setNum(dao.keyNumMethod());
+		return dao.multiInsertMethod(list);
+	}
+	public int multiDelProcess(List<Integer> list) {
+		return dao.multiDeleteMethod(list);
+	}
+	public List<MemDTO> searchPorcess(MemDTO dto){
+		return dao.searchMethod(dto);
+	}
+	
+	public int multiuptProcess(MemDTO dto) {
+		return dao.multiuptMethod(dto);
+	}
 }

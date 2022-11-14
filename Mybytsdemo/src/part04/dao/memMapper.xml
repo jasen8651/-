@@ -7,5 +7,86 @@
 	<select id="all" resultType="part04.dto.MemDTO">
 		select * from mem order by num
 	</select>
+
+	<select id="keyNum" resultType="java.lang.Integer"
+		flushCache="true">
+		select mem_num_seq.nextval
+		from dual
+	</select>
+
+	<!-- 다중insert insert all into mem(num, name, age, loc) values(1 , '이환', 
+		30, '동굴') into mem(num, name, age, loc) values(2 , '향소', 20, '경주') select8 
+		from dual; -->
+
+	<insert id="multiIns" parameterType="java.util.List">
+		insert all
+		<foreach collection="list" item="element" index="no">
+			into mem
+			values(#{element.num}, #{element.name},#{element.age},
+			#{element.loc})
+		</foreach>
+		select * from dual
+	</insert>
+	<!-- 다중 삭제 -->
+	<delete id="multiDel">
+		delete from mem
+		where num In(
+		<foreach collection="list" item="element" separator=",">
+			#{element}
+		</foreach>
+		)
+	</delete>
+
+	<delete id="multiDel2">
+		delete from mem
+		where num In(
+		<foreach collection="array" item="element" separator=",">
+			#{element}
+		</foreach>
+		)
+	</delete>
+
 	
+	<select id="search" parameterType="part04.dto.MemDTO"
+		resultType="part04.dto.MemDTO">
+		select * from mem
+		<!-- <where> <if test="name!=null"> name like '%' || #{name} || '%' </if> 
+			<if test="age !=0"> or age>#{age} </if> </where> -->
+
+		<trim prefix="where" suffixOverrides="or|and">
+			<if test="name!=null">
+				name like '%' || #{name} || '%' or
+			</if>
+			<if test="age!=0">
+				age>#{age}
+			</if>
+		</trim>
+	</select>
+
+	<update id="multiupt" parameterType="part04.dto.MemDTO">
+		update mem
+		<!-- <set>
+			<if test="name!=null">
+				name= #{name},
+			</if>
+			<if test="age!=0">
+			age=#{age},
+			</if>
+			<if test="loc!=null">
+				loc=#{loc}
+			</if>
+		</set>  -->
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name!=null">
+				name= #{name},
+			</if>
+			<if test="age!=0">
+			age=#{age},
+			</if>
+			<if test="loc!=null">
+				loc=#{loc}
+			</if>
+		</trim>
+		where num=#{num}
+	</update>
 </mapper>
