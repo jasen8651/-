@@ -31,4 +31,7 @@ public class Memcontroller {
 	public int multiuptProcess(MemDTO dto) {
 		return dao.multiuptMethod(dto);
 	}
+	public int insertdataProcess(MemDTO dto) {
+		return dao.inserdataMethod(dto);
+	}
 }

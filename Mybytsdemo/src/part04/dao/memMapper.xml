@@ -89,4 +89,17 @@
 		</trim>
 		where num=#{num}
 	</update>
+	
+	<insert id="insData" parameterType="part04.dto.MemDTO">
+		insert into mem values(mem_num_seq.nextval, #{name}, #{age},
+		<choose>
+			<when test="loc==null">
+				'test'
+			</when>
+			<otherwise>
+			#{loc}
+			</otherwise>
+		</choose>
+		)
+	</insert>
 </mapper>

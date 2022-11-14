@@ -31,12 +31,14 @@ public class MemMain {
 		 * display(searchlist);
 		 */
 		
-		MemDTO mt = new MemDTO();
-		mt.setNum(19);
-		mt.setName("한라산");
-		mt.setAge(99);
-		int upcnt = mc.multiuptProcess(mt);
-		System.out.printf("수정 완료 %d\n", upcnt);
+		/*
+		 * MemDTO mt = new MemDTO(); mt.setNum(19); mt.setName("한라산"); mt.setAge(99);
+		 * int upcnt = mc.multiuptProcess(mt); System.out.printf("수정 완료 %d\n", upcnt);
+		 */
+		
+		//int inscnt = mc.insertdataProcess(new MemDTO("개구리",10,"계곡"));
+		int inscnt = mc.insertdataProcess(new MemDTO("두꺼비",10));
+		System.out.printf("inset count %d\n", inscnt);
 		
 		List<MemDTO> alist = mc.selectProcrss();
 	    display(alist);
